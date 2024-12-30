@@ -1,0 +1,8 @@
+def two_sum(nums, target):
+  lookup = dict()
+  for k, v in enumerate(nums): 
+    remain = target - v
+    if remain in lookup.keys():
+      return [k,lookup[remain]] 
+    else :
+      lookup[v] = k
