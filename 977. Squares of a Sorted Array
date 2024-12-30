@@ -1,1 +1,12 @@
-
+def square(nums):
+  ans = []
+  start_ = 0
+  end_ = len(nums) - 1
+  while start_ <= end_:
+    ans.insert(0,nums[end_]**2) if abs(nums[start_]) < abs(nums[end_]) else ans.insert(0,nums[start_]**2)
+    if abs(nums[start_]) < abs(nums[end_]):
+      end_ -= 1
+    else:
+      start_ += 1
+      
+  return ans
