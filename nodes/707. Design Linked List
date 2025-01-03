@@ -9,44 +9,78 @@ class MyLinkedList:
       self.head = None
            
     def get(self, index: int) -> int:
-
-      node_ = self.head
-      n = 0
-      while n != index:
-        node_ = node_.next
-        n += 1
-      return node_.val
+      if self.head:
+        node_ = self.head
+        n = 0
+        while (n != index) and (node_!= None):
+            node_ = node_.next
+            n += 1
+        if node_:
+            
+            return node_.val     
+        else:
+            
+            return -1
+      else:
+            return -1
+            
         
 
     def addAtHead(self, val: int) -> None:
-      if self.head == None:
-        self.head = ListNode(val)
-      else:
+      if self.head:
         new_head = ListNode(val)
         new_head.next = self.head
         self.head = new_head
+        
+      else:
+        self.head = ListNode(val)
+        
 
 
     def addAtTail(self, val: int) -> None:
-      node_ = self.head
-      while node_.next != None:
-          node_ = node_.next
-      node_.next = ListNode(val)
+      if self.head:
+        node_ = self.head
+        while node_.next != None:
+            node_ = node_.next
+        node_.next = ListNode(val)
+        
+      else:
+        self.head = ListNode(val)
+        
 
     def addAtIndex(self, index: int, val: int) -> None:
-      new_node = ListNode(val)
-      node_ = self.head
-      n = 1
-      while n != index:
-        node_ = node_.next
-        n += 1
-      new_node.next = node_.next
-      node_.next = new_node
+      if index == 0:
+        self.addAtHead(val)
+      else:
+        new_node = ListNode(val)
+        node_ = self.head
+        n = 1
+        while (n != index) and (node_!= None):
+          node_ = node_.next
+          n += 1       ## go to the node before the target index
+        if node_:
+            new_node.next = node_.next
+            node_.next = new_node
+        else:
+            return
+
 
     def deleteAtIndex(self, index: int) -> None:
-      node_ = self.head
-      n = 1
-      while n != index:
-        node_ = node_.next
-        n += 1
-      node_.next = node_.next.next
+      if index == 0:
+        if self.head == None:
+            return None 
+        self.head = self.head.next
+      else:
+        node_ = self.head
+        n = 1
+        while (n != index) and (node_!= None):
+          node_ = node_.next
+          n += 1
+        
+        if node_:
+            try:
+                node_.next = node_.next.next
+            except:
+                return None
+        else:
+            return None
